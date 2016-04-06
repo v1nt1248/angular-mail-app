@@ -1,0 +1,17 @@
+<form class="form-login" name="loginForm" ng-submit="$ctrl.sendReq()" layout="column" layout-align="center center">
+	<h2 class="md-title">Sign In please</h2>
+	<md-input-container>
+		<label>Email address</label>
+		<input type="email" id="inputEmail" ng-required="true" ng-model="$ctrl.login.name">
+	</md-input-container>
+	<md-input-container>
+		<label>Password</label>
+		<input type="password" id="inputPassword" required="" ng-model="$ctrl.login.password">
+	</md-input-container>
+	<md-button class="md-primary md-raised" type="submit" aria-label="submit" ng-disabled="loginForm.$invalid">
+		<ng-md-icon icon="login"></ng-md-icon>
+	</md-button>
+</form>
+<div class="login-error" ng-class="{loginErrorShow: $ctrl.login.error}" layout="row" layout-align="center center">
+	Email and/or password is incorrect!
+</div>
