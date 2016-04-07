@@ -30,7 +30,7 @@ gulp.task("styles", function() {
 });
 
 gulp.task("css", function() {
-	return gulp.src("./src/**/*.css")
+	return gulp.src("./src/**/*.{css,jpg,png,gif}")
 		.pipe(gulp.dest("./public/"))
 		.pipe(reload({stream:true}));
 });

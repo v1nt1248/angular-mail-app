@@ -36,3 +36,10 @@
 .loginErrorShow {
 	-webkit-animation: Login-Error-Animation 3s ease-out;
 }
+
+.wait {
+	position: absolute;
+	//bottom: 200px;
+	margin: 50px 0;
+	left: calc(50% - 32px);
+}

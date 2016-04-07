@@ -1,1 +1,23 @@
-<h3> Mail App </h3>
+<section class="mailApp" layout="column" layout-align="start stretch">
+	<md-toolbar layout="row" layout-align="start center" class="md-hue-1">
+		<md-button class="md-icon-button" aria-label="contscts" ng-click="$ctrl.toggleSidenav()">
+			<ng-md-icon icon="people" size="24"></ng-md-icon>
+		</md-button>
+	</md-toolbar>
+	<section class="mailAppCont" layout="row" layout-align="start stretch">
+		<div class="mailFolders" layout="column" layout-align="start stretch">
+			<a ui-sref="mail-app.folders({folderId: folder.id})" ui-sref-active="active" ng-repeat="folder in $ctrl.folders">
+				<ng-md-icon icon="{{folder.icon}}" size="24"></ng-md-icon>
+				<span>{{folder.name}}</span>
+				<span> ({{folder.size}}) </span>
+			</a>
+		</div>
+		<div class="messages" layout="row" layout-align="start stretch">
+			<div ui-view></div>
+		</div>
+	</section>
+
+	<md-sidenav class="md-sidenav-left md-whiteframe-2dp" md-component-id="left" md-disable-backdrop>
+		<h4>Contacts!</h4>
+	</md-sidenav>
+</section>
