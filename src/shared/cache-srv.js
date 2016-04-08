@@ -1,48 +1,66 @@
 "use strict"
 
-export function cache() {
+cache.$inject = ["contactsSrv", "messagesSrv"];
+export function cache(contactsSrv, messagesSrv) {
 	let login;
 	let folders;
 	let contacts;
 	let messages;
 
+	/* login */
 	this.setLogin = (mail) => {
 		login = mail;
-		console.log("SET " + login);
 	};
 
 	this.getLogin = () => {
-		console.log("GET " + login);
 		return login;
 	};
 
+	/* mail folders */
 	this.setFolders = (data) => {
 		folders = data;
-		console.log("SET " + JSON.stringify(folders));
 	};
 
 	this.getFolders = () => {
-		console.log("GET " + JSON.stringify(folders));
 		return folders;
 	};
 
+	/* contacts */
 	this.setContacts = (data) => {
 		contacts = data;
-		console.log("SET " + JSON.stringify(contacts));
 	}
 
 	this.getContacts = () => {
-		console.log("GET " + JSON.stringify(contacts));
+		if (contacts === undefined) {
+			contactsSrv.getContacts()
+				.then((reply) => {
+					return reply;
+				})
+		}
 		return contacts;
 	}
 
+	this.addContact = (contact) => {
+		contacts[contact.id] = contact;
+		return contactsSrv.addContact(contact);
+	}
+
+	this.updateContact = (contact) => {
+		contacts[contact.id] = contact;
+		return contactsSrv.updateContact(contact);
+	}
+
+	this.delContact = (id) => {
+		delete contacts[id];
+		return contactsSrv.removeContact(id);
+	}
+
+	/* messages */
 	this.setMessages = (data) => {
 		messages = data;
-		console.log("SET " + JSON.stringify(messages));
 	}
 
 	this.getMessages = () => {
-		console.log("GET " + JSON.stringify(messages));
 		return messages;
 	}
 

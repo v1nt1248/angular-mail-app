@@ -1,3 +1,10 @@
-<div ng-repeat="(index, message) in $ctrl.messages">
-	{{message.subject}}
-</div>
+<section class="msg-wrap" layout="row" layout-align="start stretch">
+	<section class="msg-list" layout="column" layout-align="start stretch">
+		<div ng-repeat="(index, message) in $ctrl.messages">
+			<a ui-sref="mail-app.folders.message({msgId: message.id})" ui-sref-active="active">{{message.subject}}</a>
+		</div>
+	</section>
+
+	<div class="msg-cont" ui-view></div>
+</section>
+

@@ -10,7 +10,7 @@ function signInCtrl($state, signInSrv, cacheSrv, mailAppSrv, contactsSrv, messag
 		error: false
 	};
 
-	this.sendReq = () => {
+	this.checkAccess = () => {
 		this.wait = true;
 		let fldrs;
 		signInSrv.checkLogin(this.login)

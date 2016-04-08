@@ -1,0 +1,48 @@
+.contacts {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	md-toolbar {
+		min-height: 56px;
+		max-height: 56px;
+		height: 56px;
+	}
+
+	md-content {
+		position: relative;
+		height: calc(100% - 56px);
+	}
+}
+
+form[name="contactForm"] {
+	width: 400px;
+
+	.form-cont {
+		padding: 8px;
+
+		md-input-container {
+			width: 98%;
+			margin: 8px 0 2px 0;
+		}
+	}
+}
+
+
+
+/*
+md-dialog[aria-label="Confirm delete"] {
+	.md-title {
+		text-align: center;
+	}
+
+	button[aria-label="Да"] {
+		background-color: red;
+		color: white;
+	}
+
+	button[aria-label="Нет"] {
+		background-color: #dddddd;
+	}
+}
+*/

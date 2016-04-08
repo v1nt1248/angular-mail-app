@@ -1,0 +1,51 @@
+<md-dialog aria-label="create" ng-cloak>
+	<form name="contactForm" ng-submit="submit()">
+		<md-dialog-content>
+			<md-toolbar layout="row" layout-align="center center">
+				<h3 class="md-title">{{title}}</h3>
+			</md-toolbar>
+			<div class="form-cont">
+				<md-input-container>
+					<label>Полное имя</label>
+					<input name="fullName" ng-model="newContact.fullName" ng-required="true">
+					<div mg-messages="contactForm.fullName.$error" ng-if="contactForm.fullName.$invalid && contactForm.fullName.$dirty">
+						<div class="err" ng-message="required">Поле должно быть заполнено</div>
+					</div>
+				</md-input-container>
+				<md-input-container>
+					<label>Пол (мужской/женский)</label>
+					<input name="gender" ng-model="newContact.gender" ng-required="true">
+					<div mg-messages="contactForm.gender.$error" ng-if="contactForm.gender.$invalid && contactForm.gender.$dirty">
+						<div class="err" ng-message="required">Поле должно быть заполнено</div>
+					</div>
+				</md-input-container>
+				<md-input-container>
+					<label>Дата рождения</label>
+					<input name="birthdate" ng-model="newContact.birthdate">
+				</md-input-container>
+				<md-input-container>
+					<label>Адрес</label>
+					<input name="address" ng-model="newContact.address">
+				</md-input-container>
+				<md-input-container>
+					<label>Email</label>
+					<input name="email" type="email" ng-model="newContact.email" ng-required="true">
+					<div mg-messages="contactForm.email.$error" ng-if="contactForm.email.$invalid && contactForm.email.$dirty">
+						<div class="err" ng-message="required">Поле должно быть заполнено</div>
+						<div class="err" ng-message="email">Не валидный email</div>
+					</div>
+				</md-input-container>
+			</div>
+		</md-dialog-content>
+		<md-progress-linear md-mode="indeterminate" ng-if="writingNow"></md-progress-linear>
+		<md-dialog-actions layout="row">
+			<md-button class="md-icon-button md-accent" ng-click="closeDialog()" aria-label="close">
+				<ng-md-icon icon="close" size="24"></ng-md-icon>
+			</md-button>
+			<md-button type="submit" class="md-icon-button md-accent" aria-label="submit" ng-disabled="contactForm.$invalid">
+				<ng-md-icon icon="save" size="24"></ng-md-icon>
+			</md-button>
+		</md-dialog-actions>
+	</form>
+	<md-progress-linear md-mode="indeterminate" ng-if="writingNow"></md-progress-linear>
+</md-dialog>

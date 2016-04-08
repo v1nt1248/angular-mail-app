@@ -1,0 +1,25 @@
+<md-card class="person" ng-class="{man: $ctrl.person.gender === 'мужской', woman: $ctrl.person.gender === 'женский'}">
+	<md-card-content>
+		<h3 class="md-title">{{$ctrl.person.fullName}}</h3>
+		<div class="info-cont">
+			<label>Дата рождения:</label>
+			<span>{{$ctrl.person.birthdate}}</span>
+		</div>
+		<div class="info-cont">
+			<label>Адрес:</label>
+			<span>{{$ctrl.person.address}}</span>
+		</div>
+		<div class="info-cont">
+			<label>email:</label>
+			<span>{{$ctrl.person.email}}</span>
+		</div>
+	</md-card-content>
+	<md-card-action layout="row" layout-align="end center">
+		<md-button class="md-icon-button md-accent" aria-label="remove" ng-click="$ctrl.removePerson($event, $ctrl.person.id)">
+			<ng-md-icon icon="remove_circle_outline" size="18"></ng-md-icon>
+		</md-button>
+		<md-button class="md-icon-button md-accent" aria-label="edit" ng-click="$ctrl.editPerson($ctrl.person.id)">
+			<ng-md-icon icon="edit" size="18"></ng-md-icon>
+		</md-button>
+	</md-card-action>
+</md-card>

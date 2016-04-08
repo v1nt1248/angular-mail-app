@@ -1,0 +1,41 @@
+md-card {
+
+	&.man {
+		background-color: #e3f2fd;
+	}
+
+	&.woman {
+		background-color: #fce4ec;
+	}
+
+	md-card-content {
+		padding: 8px;
+
+
+		.md-title {
+			text-align: center;
+		}
+
+		.info-cont {
+			margin: 5px 0;
+
+			label {
+				font-style: italic;
+				color: rgba(0, 0, 0, 0.56);
+			}
+
+			span {
+				padding-left: 5px;
+			}
+		}
+	}
+
+	md-card-action {
+		button {
+			ng-md-icon {
+				height: 18px;
+				width: 18px;
+			}
+		}
+	}
+}

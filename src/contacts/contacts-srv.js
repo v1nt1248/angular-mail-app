@@ -21,8 +21,8 @@ export function contactsSrv($http) {
 						isMarked: false
 					};
 					contacts[tmp.id] = tmp;
-					return contacts;
 				}
+				return contacts;
 			}, (err) => { console.error(err)});
 	}
 

@@ -1,0 +1,16 @@
+<section class="contacts" layout="column" layout-align="start stretch">
+	<md-toolbar layout="row" layout-align="space-between center">
+		<md-button class="md-icon-button" aria-label="back" ng-click="$ctrl.backSidenav()">
+			<ng-md-icon icon="arrow_back" size="24"></ng-md-icon>
+		</md-button>
+		<span layout="row" layout-align="center center">Контакты</span>
+		<md-button class="md-icon-button" aria-label="add" ng-click="$ctrl.createContact($event)">
+			<ng-md-icon icon="person_add" size="24"></ng-md-icon>
+		</md-button>
+	</md-toolbar>
+	<md-content layout="column" layout-align="start stretch">
+
+		<contact person="person" ng-repeat="(index, person) in $ctrl.contacts | toArray | orderBy: 'fullName'"></contact>
+
+	</md-content>
+</section>

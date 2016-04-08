@@ -8,7 +8,10 @@ import {contactsSrv} from "../contacts/contacts-srv";
 import {messagesSrv} from "../messages/messages-srv";
 import {signIn} from "../sign-in/sign-in";
 import {mailApp} from "../mail-app/mail-app";
-import {messages} from "../messages/messages"
+import {contacts} from "../contacts/contacts";
+import {contact} from "../contact/contact";
+import {messages} from "../messages/messages";
+import {msg} from "../msg/msg";
 
 let app = angular.module("myMail", ["ngMaterial", "ui.router", "ngMdIcons"]);
 
@@ -20,7 +23,10 @@ app.service("contactsSrv", contactsSrv);
 app.service("messagesSrv", messagesSrv);
 app.component("signIn", signIn);
 app.component("mailApp", mailApp);
+app.component("contacts", contacts);
+app.component("contact", contact);
 app.component("messages", messages);
+app.component("msg", msg);
 
 app.config(function(ngMdIconServiceProvider, $mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
@@ -51,7 +57,7 @@ app.config(function(ngMdIconServiceProvider, $mdThemingProvider, $stateProvider,
 			controllerAs: "$crtl"
 		})
 		.state("mail-app.folders", {
-			url: "/mail/:folderId",
+			url: "/:folderId",
 			template: `<messages messages="$ctrl.messages"></messages>`,
 			resolve: {
 				data: ["$stateParams", "cacheSrv", function($stateParams, cacheSrv) {
@@ -67,6 +73,22 @@ app.config(function(ngMdIconServiceProvider, $mdThemingProvider, $stateProvider,
 			},
 			controller: function(data) {
 				this.messages = data;
+			},
+			controllerAs: "$ctrl"
+		})
+		.state("mail-app.folders.message", {
+			url: "/:msgId",
+			template: `<msg message="$ctrl.message"></msg>`,
+			resolve: {
+				msgContent: ["$stateParams", "cacheSrv", function($stateParams, cacheSrv) {
+					let messages = cacheSrv.getMessages();
+					let msgId = $stateParams.msgId;
+					let msg = messages[msgId];
+					return msg;
+				}]
+			},
+			controller: function(msgContent) {
+				this.message = msgContent;
 			},
 			controllerAs: "$ctrl"
 		});

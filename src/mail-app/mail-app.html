@@ -12,12 +12,10 @@
 				<span> ({{folder.size}}) </span>
 			</a>
 		</div>
-		<div class="messages" layout="row" layout-align="start stretch">
-			<div ui-view></div>
-		</div>
+		<div ui-view class="messages" layout="row" layout-align="start stretch"></div>
 	</section>
 
 	<md-sidenav class="md-sidenav-left md-whiteframe-2dp" md-component-id="left" md-disable-backdrop>
-		<h4>Contacts!</h4>
+		<contacts side-nav="$ctrl.toggleSidenav()"></contacts>
 	</md-sidenav>
 </section>
