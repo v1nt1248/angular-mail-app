@@ -10,8 +10,12 @@
 	}
 
 	md-content {
-		position: relative;
-		height: calc(100% - 56px);
+		//position: relative;
+		//height: calc(100% - 56px);
+		position: absolute;
+		width: 100%;
+		top: 56px;
+		bottom: 0;
 	}
 }
 
@@ -28,21 +32,20 @@ form[name="contactForm"] {
 	}
 }
 
+.del-confirm {
+	padding: 8px;
+	color: black;
 
-
-/*
-md-dialog[aria-label="Confirm delete"] {
 	.md-title {
+		margin: 5px 0;
 		text-align: center;
+
+		&.accent {
+			color: darkblue;
+		}
 	}
 
-	button[aria-label="Да"] {
-		background-color: red;
-		color: white;
-	}
-
-	button[aria-label="Нет"] {
-		background-color: #dddddd;
+	.action {
+		margin-top: 20px;
 	}
 }
-*/

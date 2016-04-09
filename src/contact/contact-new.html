@@ -39,7 +39,7 @@
 		</md-dialog-content>
 		<md-progress-linear md-mode="indeterminate" ng-if="writingNow"></md-progress-linear>
 		<md-dialog-actions layout="row">
-			<md-button class="md-icon-button md-accent" ng-click="closeDialog()" aria-label="close">
+			<md-button class="md-icon-button md-accent" ng-click="cancel()" aria-label="close">
 				<ng-md-icon icon="close" size="24"></ng-md-icon>
 			</md-button>
 			<md-button type="submit" class="md-icon-button md-accent" aria-label="submit" ng-disabled="contactForm.$invalid">

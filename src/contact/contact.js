@@ -1,64 +1,53 @@
 "use strict"
 
-contactCtrl.$inject = ["$scope", "contactsSrv", "cacheSrv", "$mdDialog"];
-function contactCtrl($scope, contactsSrv, cacheSrv, $mdDialog) {
+contactCtrl.$inject = ["$scope", "$mdDialog"];
+function contactCtrl($scope, $mdDialog) {
 
-	this.editPerson = (id) => {
-		alert("Edit person " + id);
-	};
-
-	this.removePerson = (ev, id) => {
-		// let confirm = $mdDialog.confirm()
-		// 	.title("Вы действительно хотите удалить этот контакт?")
-		// 	.ariaLabel("Confirm delete")
-		// 	.targetEvent(ev)
-		// 	.ok("Да")
-		// 	.cancel("Нет");
-		//
-		// $mdDialog.show(confirm)
-		// 	.then(function() {
-		// 		return cacheSrv.delContact(id)
-		// 			.then(() => {
-		// 				$mdDialog.hide();
-		// 			})
-		// 	}, function() {
-		// 		$mdDialog.hide();
-		// 	});
-
+	this.removePerson = (ev, prsnId) => {
 		$mdDialog.show({
 			template: '<div class="del-confirm">' +
 								'<h3 class="md-title">Вы действительно хотите</h3>' +
-								'<h3 class="md-title">удалить этот контакт?</h3>' +
+								'<h3 class="md-title">удалить контакт</h3>' +
+								'<h3 class="md-title accent">{{personTmp.fullName}} ?</h3>' +
 								'<div class="action" layout="row" layout-align="space-around center">' +
 								'<md-button class="md-raised md-primary" ng-click="actionNo()">Нет</md-button>' +
 								'<md-button class="md-raised md-warn" ng-click="actionYes()">Да</md-button>' +
-								'</div></div>',
+								'</div>' +
+								'<md-progress-linear md-mode="indeterminate" ng-if="deletingNow"></md-progress-linear>' +
+								'</div>',
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: false,
 			scope: $scope,
-			controller: function DialogCtrl($scope, $mdDialog, cacheSrv) {
-				console.log(id);
+			preserveScope: true,
+			controller: function DialogCtrl($scope, $mdDialog) {
+				$scope.deletingNow = false;
+				$scope.personTmp = $scope.$ctrl.person;
 
 				$scope.actionNo = () => {
-					$mdDialog.hide();
+					$mdDialog.cancel();
 				}
 
 				$scope.actionYes = () => {
-					return cacheSrv.delContact(id)
-						.then(() => {
-							$scope.actionNo();
-						})
+					$scope.deletingNow = true;
+					$scope.$ctrl.onAction({id: prsnId, task: "delete"});
+					$scope.deletingNow = false;
+					$mdDialog.hide();
 				}
 			}
 		});
-	};
+	}
+
+	this.editPerson = (prsnId) => {
+		this.onAction({id: prsnId, task: "edit"});
+	}
 
 }
 
 export let contact = {
 	bindings: {
-		person: "="
+		person: "=",
+		onAction: "&"
 	},
 	templateUrl: "./contact/contact.html",
 	controller: contactCtrl

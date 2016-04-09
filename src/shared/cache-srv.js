@@ -34,15 +34,22 @@ export function cache(contactsSrv, messagesSrv) {
 		if (contacts === undefined) {
 			contactsSrv.getContacts()
 				.then((reply) => {
+					contacts = reply;
 					return reply;
-				})
+				});
 		}
 		return contacts;
 	}
 
 	this.addContact = (contact) => {
-		contacts[contact.id] = contact;
-		return contactsSrv.addContact(contact);
+		return contactsSrv.addContact(contact)
+			.then((id) => {
+				contact.id = id;
+				contact.isMarked = false;
+				contact.isSaved = true;
+				contacts[id] = contact;
+				return id;
+			});
 	}
 
 	this.updateContact = (contact) => {
