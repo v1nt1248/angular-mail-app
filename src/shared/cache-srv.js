@@ -68,7 +68,65 @@ export function cache(contactsSrv, messagesSrv) {
 	}
 
 	this.getMessages = () => {
+		if (messages === undefined) {
+			return messagesSrv.getMessages()
+				.then((reply) => {
+					let tmpMessages = reply;
+					for (let keyMsg of Object.keys(tmpMessages)) {
+						let mes = this.additionMsg(tmpMessages[keyMsg]);
+
+
+						let mail = tmpMessages[keyMsg].mailAddress;
+						let cntct = tmpMessages[keyMsg].mailAddress;
+						for (let keyContact of Object.keys(contacts)) {
+							if (contacts[keyContact].email === mail) {
+								cntct = contacts[keyContact].fullName;
+								break;
+							}
+						}
+						tmpMessages[keyMsg].contact = cntct;
+					}
+					messages = tmpMessages;
+					return messages;
+				});
+		}
 		return messages;
+	}
+
+	this.addMessage = (message) => {
+		return messagesSrv.addMessage(message)
+			.then((id) => {
+				message.id = id;
+				message = this.additionMsg(message);
+				messages[id] = message;
+				folders[messages[id].boxId].size += 1;
+			});
+	}
+
+	this.delMessage = (id) => {
+		if (messages[id].boxId === "2") {
+			delete messages[id];
+			folders[2].size -= 1;
+			return messagesSrv.removeMessage(id);
+		} else {
+			folders[messages[id].boxId].size -= 1;
+			messages[id].boxId = "2";
+			folders[2].size += 1;
+			return messagesSrv.updateMessage(messages[id]);
+		}
+	}
+
+	this.additionMsg =(msg) => {
+		let mail = msg.mailAddress;
+		let cntct = msg.mailAddress;
+		for (let keyContact of Object.keys(contacts)) {
+			if (contacts[keyContact].email === mail) {
+				cntct = contacts[keyContact].fullName;
+				break;
+			}
+		}
+		msg.contact = cntct;
+		return msg;
 	}
 
 }

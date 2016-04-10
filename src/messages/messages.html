@@ -1,8 +1,26 @@
 <section class="msg-wrap" layout="row" layout-align="start stretch">
 	<section class="msg-list" layout="column" layout-align="start stretch">
-		<div ng-repeat="(index, message) in $ctrl.messages">
-			<a ui-sref="mail-app.folders.message({msgId: message.id})" ui-sref-active="active">{{message.subject}}</a>
-		</div>
+		<md-card ng-repeat="(index, message) in $ctrl.messages" ng-class="{activeMsg: $ctrl.activeMsgId === message.id}">
+			<md-card-content ng-click="$ctrl.goState(message.id)" layout="row" layout-align="space-between stretch">
+				<div class="msg-logo" ng-class="{msgIn: message.isOut === false, msgOut: message.isOut === true}" layout="row" layout-align="center center">
+					<span>{{message.contact[0].toUpperCase()}}</span>
+				</div>
+				<div class="msg-title" layout="column" layout-align="space-between stretch">
+					<span class="title-subj">{{message.subject}}</span>
+					<span class="title-cont">{{message.contact}}</span>
+					<span class="title-body">{{message.body}}</span>
+				</div>
+			</md-card-content>
+			<md-card-action layout="row" layout-align="space-between center">
+				<md-button class="md-icon-button md-accent" aria-label="remove" ng-click="$ctrl.removeMsg($event, message.id)">
+					<ng-md-icon icon="remove_circle_outline" size="18"></ng-md-icon>
+				</md-button>
+				<div class="msg-flags" layout="column" layout-align="center center">
+					<ng-md-icon ng-if="message.isOut" icon="call_made" size="18" style="fill: green"></ng-md-icon>
+					<ng-md-icon ng-if="!message.isOut" icon="call_received" size="18" style="fill: red"></ng-md-icon>
+				</div>
+			</md-card-action>
+		</md-card>
 	</section>
 
 	<div class="msg-cont" ui-view></div>

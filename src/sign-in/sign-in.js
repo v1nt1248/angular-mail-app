@@ -24,7 +24,8 @@ function signInCtrl($state, signInSrv, cacheSrv, mailAppSrv, contactsSrv, messag
 						})
 						.then((contacts) => {
 							cacheSrv.setContacts(contacts);
-							return messagesSrv.getMessages();
+							return cacheSrv.getMessages();
+							// return messagesSrv.getMessages();
 						})
 						.then((messages) => {
 							fldrs = mailAppSrv.countMessages(fldrs, messages);

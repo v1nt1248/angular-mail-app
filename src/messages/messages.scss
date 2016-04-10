@@ -9,13 +9,88 @@
 		height: 100%;
 		overflow: auto;
 
-		a {
-			color: darkblue;
+		md-card {
+			min-height: 130px;
 
-			&.active {
-				color: orange;
+			&.activeMsg {
+				background-color: lightgoldenrodyellow;
+			}
+
+			md-card-content {
+				position: relative;
+				height: 90px;
+				cursor: pointer;
+
+				&:focus {
+					outline: none;
+					outline-width: 0;
+				}
+
+				div {
+					margin: 0;
+					padding: 0;
+				}
+
+				.msg-logo {
+					position: relative;
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+
+					&.msgIn {
+						background-color: lightcoral;
+						color: white;
+					}
+
+					&.msgOut {
+						background-color: lightgreen;
+						color: black;
+					}
+
+					span {
+						font-size: 18px;
+						font-weight: bold;
+						text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+					}
+				}
+
+				.msg-title {
+					width: calc(100% - 60px);
+
+					span {
+						position: relative;
+						height: 27px;
+						padding: 0 10px;
+						font-size: 16px;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+
+						&.title-subj {
+							color: rgba(0, 0, 0, 0.87);
+							font-weight: bold;
+						}
+
+						&.title-cont {
+							font-style: italic;
+							color: rgba(0, 0, 0, 0.56);
+						}
+					}
+				}
+			}
+
+			md-card-action {
+				.msg-flags {
+					width: 40px;
+
+					ng-md-icon {
+						width: 18px;
+						height: 18px;
+					}
+				}
 			}
 		}
+
 	}
 
 	.msg-cont {

@@ -1,0 +1,75 @@
+.m-content {
+	width: calc(100% - 10px);
+	height: calc(100% - 20px);
+
+	.m-info {
+		margin: 8px 0 12px 0;
+
+		label {
+			display: inline-block;
+			width: 50px;
+			font-size: 16px;
+			font-weight: bold;
+			color: black;
+			float: left;
+		}
+
+		p {
+			position: relative;
+			width: calc(100% - 52px);
+			margin: 0 0 0 50px;
+			font-size: 16px;
+			font-style: italic;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+
+	.m-body {
+		position: relative;
+		width: 96%;
+		margin: 12px 2% 0 2%;
+		font-family: "Ubuntu", sans-serif;
+		font-size: 16px;
+		color: rgba(0, 0, 0, 0.87);
+		overflow-x: hidden;
+		overflow-y: auto;
+		word-wrap: break-word;
+		white-space: pre-line;
+	}
+}
+
+form[name="msgForm"] {
+	width: 600px;
+
+	.form-cont {
+		padding-top: 8px;
+
+		md-input-container {
+			width: calc(100% - 15px);
+			margin: 18px 5px 5px 5px;
+			font-size: 15px;
+
+			.err {
+				font-size: 12px;
+				font-style: italic;
+				color: red;
+			}
+		}
+
+		textarea {
+			position: relative;
+			background-color: #e0e0e0;
+			width: calc(100% - 20px);
+			min-height: 250px;
+			margin: 10px auto;
+			padding: 10px;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 16px;
+			background-color: #ffffff;
+			border: none;
+			outline: none;
+		}
+	}
+}

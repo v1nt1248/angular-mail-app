@@ -1,7 +1,10 @@
 <section class="mailApp" layout="column" layout-align="start stretch">
-	<md-toolbar layout="row" layout-align="start center" class="md-hue-1">
-		<md-button class="md-icon-button" aria-label="contscts" ng-click="$ctrl.toggleSidenav()">
+	<md-toolbar layout="row" layout-align="space-between center" class="md-hue-1">
+		<md-button class="md-icon-button" aria-label="contacts" ng-click="$ctrl.toggleSidenav()">
 			<ng-md-icon icon="people" size="24"></ng-md-icon>
+		</md-button>
+		<md-button class="md-icon-button" aria-label="create msg" ng-click="$ctrl.createNewMsg()">
+			<ng-md-icon icon="create" size="24"></ng-md-icon>
 		</md-button>
 	</md-toolbar>
 	<section class="mailAppCont" layout="row" layout-align="start stretch">

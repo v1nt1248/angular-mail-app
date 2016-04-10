@@ -1,1 +1,23 @@
-{{$ctrl.message}}
+<section class="msg-wrap">
+	<md-card class="m-content">
+		<md-card-content layout="column" layout-align="start stretch">
+			<div class="m-info">
+				<label>
+					<span ng-if="!$ctrl.message.isOut">От:</span>
+					<span ng-if="($ctrl.message.isOut)">Кому:</span>
+				</label>
+				<p>{{$ctrl.message.contact}}</p>
+			</div>
+			<div class="m-info">
+				<label>
+					<span>Тема:</span>
+				</label>
+				<p>{{$ctrl.message.subject}}</p>
+			</div>
+			<md-divider></md-divider>
+			<pre class="m-body">
+				{{$ctrl.message.body}}
+			</pre>
+	</md-card-content>
+</md-card>
+</section>

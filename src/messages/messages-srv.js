@@ -3,18 +3,6 @@
 messagesSrv.$inject = ["$http"];
 export function messagesSrv($http) {
 
-	this.makeMsgJSON = () => {
-		return {
-			id: "new",
-			boxId: 1,
-			mailAddress: "",
-			subject: "",
-			body: "",
-			isOut: true,
-			isRead: true
-		};
-	}
-
 	this.getMessages = () => {
 		return $http.get("https://cards-v1nt1248.firebaseio.com/messages.json")
 			.then((response) => {

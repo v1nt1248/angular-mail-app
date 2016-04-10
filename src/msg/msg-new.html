@@ -1,0 +1,39 @@
+<md-dialog aria-label="create" ng-cloak>
+	<form name="msgForm" ng-submit="submit()">
+		<md-dialog-content>
+			<md-toolbar layout="row" layout-align="center center">
+				<h3 class="md-title">Новое сообщение</h3>
+			</md-toolbar>
+			<div class="form-cont">
+				<md-input-container>
+					<label>Кому</label>
+					<input type="email" name="mail" id="mail" ng-model="newMsg.mailAddress" ng-required="true">
+					<div mg-messages="msgForm.mail.$error" ng-if="msgForm.mail.$invalid && msgForm.mail.$dirty">
+						<div class="err" ng-message="required">Поле должно быть заполнено</div>
+						<div class="err" ng-message="email">Не валидный email</div>
+					</div>
+				</md-input-container>
+				<md-input-container>
+					<label>Тема:</label>
+					<input name="subj" id="subj" ng-model="newMsg.subject" ng-required="true">
+					<div mg-messages="msgForm.subj.$error" ng-if="msgForm.subj.$invalid && msgForm.subj.$dirty">
+						<div class="err" ng-message="required">Поле должно быть заполнено</div>
+					</div>
+				</md-input-container>
+				<md-divider></md-divider>
+				<textarea id="bodytxt" ng-model="newMsg.body" placeholder="Введите текст сообщения">
+				</textarea>
+			</div>
+		</md-dialog-content>
+		<md-progress-linear md-mode="indeterminate" ng-if="writingNow"></md-progress-linear>
+		<md-dialog-actions layout="row">
+			<md-button class="md-icon-button md-accent" ng-click="cancel()" aria-label="close">
+				<ng-md-icon icon="close" size="24"></ng-md-icon>
+			</md-button>
+			<md-button type="submit" class="md-icon-button md-accent" aria-label="submit" ng-disabled="msgForm.$invalid">
+				<ng-md-icon icon="save" size="24"></ng-md-icon>
+			</md-button>
+		</md-dialog-actions>
+	</form>
+	<md-progress-linear md-mode="indeterminate" ng-if="writingNow"></md-progress-linear>
+</md-dialog>
