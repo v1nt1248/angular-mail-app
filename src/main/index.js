@@ -12,6 +12,7 @@ import {contacts} from "../contacts/contacts";
 import {contact} from "../contact/contact";
 import {messages} from "../messages/messages";
 import {msg} from "../msg/msg";
+import {mailInput} from "../mail-input/mail-input";
 
 let app = angular.module("myMail", ["ngMaterial", "ui.router", "ngMdIcons"]);
 
@@ -27,6 +28,7 @@ app.component("contacts", contacts);
 app.component("contact", contact);
 app.component("messages", messages);
 app.component("msg", msg);
+app.component("mailInput", mailInput);
 
 app.config(function(ngMdIconServiceProvider, $mdThemingProvider, $stateProvider, $urlRouterProvider) {
 

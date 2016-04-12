@@ -129,6 +129,17 @@ export function cache(contactsSrv, messagesSrv) {
 		return msg;
 	}
 
+	this.prepareContactList = () => {
+		let list = {};
+		for (let key of Object.keys(contacts)) {
+			let tmpEmail = contacts[key].email;
+			let tmpFullName = contacts[key].fullName;
+			let tmpSearcSpace = tmpFullName + " (" + tmpEmail + ")";
+			list[tmpSearcSpace] = tmpEmail;
+		}
+		return list;
+	}
+
 }
 
 Object.freeze(exports);

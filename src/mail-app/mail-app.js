@@ -25,6 +25,10 @@ function mailAppCtrl($scope, $state, cacheSrv, $mdSidenav, $mdDialog) {
 			preserveScope: true,
 			controller: function DialogCtrl($scope, $state, $mdDialog, cacheSrv) {
 				$scope.writingNow = false;
+				$scope.error = {
+					email: false,
+					subj: false
+				};
 
 				$scope.newMsg = {
 					id: "new",
@@ -46,15 +50,35 @@ function mailAppCtrl($scope, $state, cacheSrv, $mdSidenav, $mdDialog) {
 				};
 
 				$scope.submit = () => {
+					$scope.error = {
+						email: false,
+						subj: false
+					};
+
+					if ($scope.newMsg.subject.length === 0) {
+						$scope.error.subj = true;
+					}
+
+					if (($scope.newMsg.mailAddress.length === 0) || !(/.+@.+\..+/i.test($scope.newMsg.mailAddress))) {
+						$scope.error.email = true;
+					}
+					
+					if ($scope.error.subj || $scope.error.email) {
+						return false;
+					}
+
 					$scope.writingNow = true;
-					// let fldrId = $state.params.folderId;
-					// console.log(fldrId);
-					cacheSrv.addMessage($scope.newMsg)
-						.then((id) => {
-							$scope.writingNow = false;
-							$scope.hide();
-							$state.reload("mail-app.folders");
-						});
+					alert(JSON.stringify($scope.newMsg));
+					$scope.writingNow = false;
+					$scope.hide();
+					$state.reload("mail-app.folders");
+					
+					// cacheSrv.addMessage($scope.newMsg)
+					// 	.then((id) => {
+					// 		$scope.writingNow = false;
+					// 		$scope.hide();
+					// 		$state.reload("mail-app.folders");
+					// 	});
 				}
 			}
 		});
