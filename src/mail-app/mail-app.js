@@ -4,14 +4,6 @@ mailAppCtrl.$inject = ["$scope", "$state", "cacheSrv", "$mdSidenav", "$mdDialog"
 function mailAppCtrl($scope, $state, cacheSrv, $mdSidenav, $mdDialog) {
 	this.folders = cacheSrv.getFolders();
 
-	// if (this.folders === undefined) {
-	// 	mailAppSrv.getMailBoxes()
-	// 		.then((reply) => {
-	// 			this.folders = reply;
-	// 			cacheSrv.setFolders(this.folders);
-	// 		});
-	// }
-
 	this.toggleSidenav = () => {
 		return $mdSidenav("left").toggle();
 	}
@@ -68,17 +60,17 @@ function mailAppCtrl($scope, $state, cacheSrv, $mdSidenav, $mdDialog) {
 					}
 
 					$scope.writingNow = true;
-					alert(JSON.stringify($scope.newMsg));
-					$scope.writingNow = false;
-					$scope.hide();
-					$state.reload("mail-app.folders");
+					// alert(JSON.stringify($scope.newMsg));
+					// $scope.writingNow = false;
+					// $scope.hide();
+					// $state.reload("mail-app.folders");
 					
-					// cacheSrv.addMessage($scope.newMsg)
-					// 	.then((id) => {
-					// 		$scope.writingNow = false;
-					// 		$scope.hide();
-					// 		$state.reload("mail-app.folders");
-					// 	});
+					cacheSrv.addMessage($scope.newMsg)
+						.then((id) => {
+							$scope.writingNow = false;
+							$scope.hide();
+							$state.reload("mail-app.folders");
+						});
 				}
 			}
 		});

@@ -7,7 +7,7 @@
 			<div class="form-cont">
 				<div class="wrap-input">
 					<label>Кому:</label>
-					<mail-input mail="newMsg.mailAddress" placeholder="начните набирать для поиска"></mail-input>
+					<mail-input ng-model="newMsg.mailAddress" placeholder="начните набирать для поиска"></mail-input>
 					<div class="err" ng-show="error.email">Не валидный email</div>
 				</div>
 				<div class="wrap-input">

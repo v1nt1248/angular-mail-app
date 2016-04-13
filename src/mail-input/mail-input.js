@@ -2,13 +2,18 @@
 
 mailInputCtrl.$inject = ["$scope", "cacheSrv"];
 function mailInputCtrl($scope, cacheSrv) {
-	this.original = {};
-	this.originalName = [];
-	this.isDone = false;
-	this.mail = "";
-	this.filtered = null;
-	this.searchQuery;
-	
+
+	let initComponent = () => {
+		this.searchQuery = "";
+		this.ngModel = this.searchQuery;
+		this.original = {};
+		this.originalName = [];
+		this.isDone = false;
+		this.filtered = [];
+	};
+
+	initComponent();
+
 	if (this.originalName.length === 0) {
 		this.original = cacheSrv.prepareContactList();
 		for (let key of Object.keys(this.original)) {
@@ -31,29 +36,42 @@ function mailInputCtrl($scope, cacheSrv) {
 		}
 	});
 
-	this.chooseName = (event, item) => {
-		// this.searchQuery = item;
+	this.selectedItem = null;
+
+	this.chooseName = () => {
+		let item = this.filtered[this.selectedItem];
 		this.searchQuery = this.original[item];
-		this.mail = this.original[item];
-		this.filtered = null;
+		this.ngModel = this.original[item];
+		this.filtered = [];
+		this.selectedItem = null;
 		this.isDone = true;
 	}
 
 	this.shift = () => {
-		this.mail = this.searchQuery;
+		this.ngModel = this.searchQuery;
 	}
 
-	this.basic = () => {
-		this.isDone = false;
+	this.finishe = () => {
+		if (this.selectedItem !== null) {
+			this.chooseName();
+		}
+		this.isDone = true;
+	}
+
+	this.leaveFilteredList = () => {
+		this.selectedItem = null;
+	}
+
+	this.mouseSelectItem = (index) => {
+		this.selectedItem = index;
 	}
 
 }
 
 export let mailInput = {
 	bindings: {
-		mail: "=",
-		placeholder: "@",
-		ngPattern: "@"
+		ngModel: "=",
+		placeholder: "@"
 	},
 	templateUrl: "./mail-input/mail-input.html",
 	controller: mailInputCtrl

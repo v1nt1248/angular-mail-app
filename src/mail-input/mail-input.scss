@@ -1,20 +1,24 @@
 .mail-input-container {
 	position: relative;
 	width: 100%;
+	z-index: 5;
 
 	.mail-input {
 		position: relative;
 		width: 100%;
 		height: 30px;
+		z-index: 10;
 	}
 
 	.mail-input-select {
 		position: absolute;
+		width: 100%;
 		box-sizing: border-box;
-		z-index: 5;
+		z-index: 15;
 		max-height: 75px;
 		overflow-x: hidden;
 		overflow-y: auto;
+		background-color: #eeeeee;
 
 		.mail-input-select-item {
 			position: relative;
@@ -24,8 +28,15 @@
 			margin: 0;
 			padding: 0 5px;
 			box-sizing: border-box;
-			overflow-x: hidden;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 			cursor: pointer;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			border-bottom: 1px dotted #dddddd;
 
 			&:hover {
 				background-color: lightgreen;
