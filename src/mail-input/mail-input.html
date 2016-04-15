@@ -1,8 +1,8 @@
-<div class="mail-input-container">
+<div class="mail-input-container" ng-keydown="$ctrl.keySelect($event)">
 	<input class="mail-input" type="text" ng-model="$ctrl.searchQuery" placeholder="{{$ctrl.placeholder}}" ng-change="$ctrl.shift()" ng-blur="$ctrl.finishe()">
 
 	<div ng-if="(($ctrl.filtered.length > 0) && ($ctrl.isDone != true))" class="mail-input-select" ng-mouseleave="$ctrl.leaveFilteredList()">
-		<p class="mail-input-select-item" ng-repeat="item in $ctrl.filtered" ng-click="$ctrl.chooseName()" ng-mouseenter="$ctrl.mouseSelectItem($index)">
+		<p class="mail-input-select-item" ng-repeat="item in $ctrl.filtered" ng-click="$ctrl.chooseName()" ng-mouseenter="$ctrl.mouseSelectItem($index)" ng-class="{activeMember: ($index === $ctrl.selectedItem)}">
 			{{item}}
 		</p>
 	</div>

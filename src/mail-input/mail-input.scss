@@ -15,9 +15,9 @@
 		width: 100%;
 		box-sizing: border-box;
 		z-index: 15;
-		max-height: 75px;
+		//max-height: 75px;
 		overflow-x: hidden;
-		overflow-y: auto;
+		//overflow-y: auto;
 		background-color: #eeeeee;
 
 		.mail-input-select-item {
@@ -37,10 +37,10 @@
 			justify-content: flex-start;
 			align-items: center;
 			border-bottom: 1px dotted #dddddd;
+		}
 
-			&:hover {
-				background-color: lightgreen;
-			}
+		.activeMember {
+			background-color: lightgreen;
 		}
 	}
 }

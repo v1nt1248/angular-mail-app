@@ -39,6 +39,7 @@ function mailInputCtrl($scope, cacheSrv) {
 	this.selectedItem = null;
 
 	this.chooseName = () => {
+		console.log("Q: " + this.selectedItem);
 		let item = this.filtered[this.selectedItem];
 		this.searchQuery = this.original[item];
 		this.ngModel = this.original[item];
@@ -58,12 +59,46 @@ function mailInputCtrl($scope, cacheSrv) {
 		this.isDone = true;
 	}
 
+	/* управление */
+
+	let key = {up: 38, down: 40, enter: 13};
+
 	this.leaveFilteredList = () => {
 		this.selectedItem = null;
 	}
 
 	this.mouseSelectItem = (index) => {
 		this.selectedItem = index;
+		console.log("index: " + this.selectedItem);
+	}
+
+	this.keySelect = (event) => {
+		let keycode = event.keyCode || event.which;
+
+		switch (keycode) {
+			case key.enter:
+				if (this.selectedItem !== null) {
+					this.chooseName();
+				}
+				break;
+			case key.down:
+				if (this.selectedItem === null) {
+					this.selectedItem = 0;
+					return;
+				}
+				if (this.selectedItem === (this.filtered.length - 1)) {
+					this.selectedItem = this.filtered.length - 1;
+					return;
+				}
+				this.selectedItem += 1;
+				break;
+			case key.up:
+				if (this.selectedItem === 0) {
+					this.selectedItem = 0;
+					return;
+				}
+				this.selectedItem -= 1;
+		}
 	}
 
 }
