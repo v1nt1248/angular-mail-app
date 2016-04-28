@@ -1,0 +1,10 @@
+<form class="form-login"> name="loginForm" ng-submit="$ctrl.sendReq()">
+	<h2 class="form-login-head">SignIn please</h2>
+	<label for="inputEmail">Email address</label>
+	<input type="email" id="inputEmail" placeholder="Email address" required="" autofocus="" ng-model="$ctrl.login.name">
+	<br>
+	<label for="inputPassword">Password</label>
+	<input type="password" id="inputPassword" placeholder="Password" required="" ng-model="$ctrl.login.password">
+	<br><br>
+	<button type="submit">Sign in</button>
+</form>
